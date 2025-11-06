@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolenge Event Management System (Static Demo)</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f4f7f6;
+            --card-color: white;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: #333;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        /* --- Panel Styling --- */
+        .admin-panel, .section-heading, .login-panel {
+            background-color: var(--card-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .admin-panel input, .admin-panel textarea, .admin-panel button,
+        .login-panel input, .login-panel button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .admin-panel button {
+            background-color: var(--success-color);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .admin-panel button:hover {
+            background-color: #1e7e34;
+        }
+        .login-panel button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .login-panel button:hover {
+            background-color: #0056b3;
+        }
+        /* --- Event Card Styling --- */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .event-card {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+        .event-card-body {
+            padding: 20px;
+        }
+        .event-card-body h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        .event-card-body .meta {
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .register-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .register-btn.free {
+            background-color: var(--success-color);
+        }
+        .register-btn.disabled {
+            background-color: var(--secondary-color);
+            cursor: not-allowed;
+            pointer-events: none; /* Disable click */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Coolenge EMS 🚀</h1>
+        <nav>
+            <a href="#events">Events</a>
+            <a href="#">My Dashboard</a>
+            <a href="#login">Login/Sign Up</a>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <h2 id="login" class="section-heading">🔑 Student Login</h2>
+        <div class="login-panel">
+            <form onsubmit="alert('Static Demo: Login data is not sent to a server. To implement login, a backend like PHP is needed.'); return false;">
+                <input type="text" placeholder="Your Student ID (Required)" required>
+                <input type="email" placeholder="Email Address (Required)" required>
+                <input type="password" placeholder="Password (Required)" required>
+                <button type="submit">Log In</button>
+                <p style="text-align: center; font-size: 0.9em; color: var(--secondary-color);">
+                    *Note: This is a static form. No data is processed or stored.*
+                </p>
+            </form>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
+
+        <h2 class="section-heading">🛠️ Admin Panel: Create New Event</h2>
+        <div class="admin-panel">
+            <form onsubmit="alert('Static Demo: Event created locally! You need a database to store this.'); return false;">
+                <input type="text" placeholder="Event Title (e.g., Tech Summit 2026)" required>
+                <textarea placeholder="Event Description and details..." rows="3" required></textarea>
+                <div style="display: flex; gap: 10px;">
+                    <input type="date" required style="flex: 1;">
+                    <input type="time" required style="flex: 1;">
+                </div>
+                <input type="text" placeholder="Location/Venue (e.g., College Auditorium)" required>
+                <div style="display: flex; gap: 10px;">
+                    <input type="number" placeholder="Capacity (e.g., 200)" value="200" style="flex: 1;">
+                    <input type="number" step="0.01" placeholder="Price (e.g., 50.00 or 0.00 for Free)" value="0.00" style="flex: 1;">
+                </div>
+                <button type="submit">Publish Event</button>
+            </form>
+            <p style="text-align: center; color: var(--secondary-color); font-size: 0.8em;">*Note: In this static demo, this form doesn't save data.*</p>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
+
+        <h2 id="events" class="section-heading">📅 Upcoming College Events</h2>
+         
+        <div class="event-grid">
+             
+            <div class="event-card">
+                <div class="event-card-body">
+                    <h3>Annual Cultural Fest 🎤</h3>
+                    <p class="meta">📍 Main Quad | 🗓️ 15th Dec 2025 | 🕒 6:00 PM</p>
+                    <p>The biggest event of the year! Enjoy music, dance, and drama performances. Limited VIP tickets available.</p>
+                    <p style="font-weight: bold; color: var(--primary-color);">Price: Rs. 250.00 (General Admission)</p>
+                    <button onclick="alert('Simulated registration. You would need to be logged in to register in a dynamic system.'); return false;" class="register-btn">Book Ticket Now</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-card-body">
+                    <h3>Code-a-thon 2025 💻</h3>
+                    <p class="meta">📍 Computer Lab 301 | 🗓️ 22nd Nov 2025 | 🕒 9:00 AM</p>
+                    <p>A 12-hour coding challenge. Compete for prizes and sharpen your skills. Free entry for all college students.</p>
+                    <p style="font-weight: bold; color: var(--success-color);">Price: FREE</p>
+                    <button onclick="alert('Simulated registration. Registration Confirmed locally!'); return false;" class="register-btn free">Register for Free</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-card-body">
+                    <h3>Career Guidance Seminar 📈</h3>
+                    <p class="meta">📍 Seminar Hall | 🗓️ 5th Jan 2026 | 🕒 2:00 PM</p>
+                    <p>Session with industry experts on resume building and interview preparation for final-year students.</p>
+                    <p style="font-weight: bold; color: var(--primary-color);">Price: Rs. 50.00 (Mandatory)</p>
+                    <button onclick="alert('Simulated registration. Requires payment in a dynamic site.'); return false;" class="register-btn">Register Now</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
