@@ -3,223 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coolenge Event Management System (Static Demo)</title>
+    <title>Gate Pass System - Login/Sign Up</title>
     <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --background-color: #f4f7f6;
-            --card-color: white;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-        }
+        /* Base Styling - Modified from your original CSS */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9; /* Light grey background */
             margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: #333;
-        }
-        .header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 1.8em;
-        }
-        .header nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
+            min-height: 100vh;
         }
         .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        /* --- Panel Styling --- */
-        .admin-panel, .section-heading, .login-panel {
-            background-color: var(--card-color);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        .admin-panel input, .admin-panel textarea, .admin-panel button,
-        .login-panel input, .login-panel button {
+            background: white;
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+            max-width: 400px;
+            padding: 40px; /* Increased padding */
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Stronger shadow */
         }
-        .admin-panel button {
-            background-color: var(--success-color);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s;
+        h2 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            font-size: 24px;
+            font-weight: 700;
         }
-        .admin-panel button:hover {
-            background-color: #1e7e34;
-        }
-        .login-panel button {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s;
-        }
-        .login-panel button:hover {
-            background-color: #0056b3;
-        }
-        /* --- Event Card Styling --- */
-        .event-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .event-card {
-            background-color: var(--card-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        .event-card:hover {
-            transform: translateY(-5px);
-        }
-        .event-card-body {
-            padding: 20px;
-        }
-        .event-card-body h3 {
-            color: var(--primary-color);
+        p.subtitle {
+            text-align: center;
+            color: #6c757d; /* Muted grey */
             margin-top: 0;
-            font-size: 1.5em;
+            margin-bottom: 25px;
+            font-size: 15px;
         }
-        .event-card-body .meta {
-            font-size: 0.9em;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
+
+        /* --- Tab System Styling (Matching the Screenshot) --- */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
         }
-        .register-btn {
+        .tab-button {
+            flex-grow: 1;
+            padding: 12px 0;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            color: #6c757d;
+            border: none;
+            background: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            color: #6f42c1; /* Purple color from screenshot */
+            border-bottom-color: #6f42c1;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
             display: block;
+        }
+        
+        /* --- Form Element Styling --- */
+        input[type="email"], input[type="password"], input[type="text"], select {
             width: 100%;
             padding: 12px;
-            background-color: var(--primary-color);
+            margin: 10px 0; /* Adjusted margin for better spacing */
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 15px;
+            background-color: #f8f9fa; /* Very light background for inputs */
+        }
+
+        /* --- Button Styling (Matching the Screenshot) --- */
+        .btn-primary {
+            width: 100%;
+            background-color: #007bff; /* Blue for Login */
             color: white;
-            text-align: center;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-top: 15px;
+            padding: 14px 20px;
+            margin: 20px 0 10px 0;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
-        .register-btn.free {
-            background-color: var(--success-color);
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
-        .register-btn.disabled {
-            background-color: var(--secondary-color);
-            cursor: not-allowed;
-            pointer-events: none; /* Disable click */
+
+        .btn-success {
+            width: 100%;
+            background-color: #28a745; /* Green for Sign Up */
+            color: white;
+            padding: 14px 20px;
+            margin: 20px 0 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-success:hover {
+            background-color: #1e7e34;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Coolenge EMS 🚀</h1>
-        <nav>
-            <a href="#events">Events</a>
-            <a href="#">My Dashboard</a>
-            <a href="#login">Login/Sign Up</a>
-        </nav>
+<div class="container">
+    <h2>Gate Pass System</h2>
+    <p class="subtitle">Sign in or create an account</p>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="login">Login</button>
+        <button class="tab-button" data-tab="signup">Sign Up</button>
     </div>
 
-    <div class="container">
-
-        <h2 id="login" class="section-heading">🔑 Student Login</h2>
-        <div class="login-panel">
-            <form onsubmit="alert('Static Demo: Login data is not sent to a server. To implement login, a backend like PHP is needed.'); return false;">
-                <input type="text" placeholder="Your Student ID (Required)" required>
-                <input type="email" placeholder="Email Address (Required)" required>
-                <input type="password" placeholder="Password (Required)" required>
-                <button type="submit">Log In</button>
-                <p style="text-align: center; font-size: 0.9em; color: var(--secondary-color);">
-                    *Note: This is a static form. No data is processed or stored.*
-                </p>
-            </form>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
-
-        <h2 class="section-heading">🛠️ Admin Panel: Create New Event</h2>
-        <div class="admin-panel">
-            <form onsubmit="alert('Static Demo: Event created locally! You need a database to store this.'); return false;">
-                <input type="text" placeholder="Event Title (e.g., Tech Summit 2026)" required>
-                <textarea placeholder="Event Description and details..." rows="3" required></textarea>
-                <div style="display: flex; gap: 10px;">
-                    <input type="date" required style="flex: 1;">
-                    <input type="time" required style="flex: 1;">
-                </div>
-                <input type="text" placeholder="Location/Venue (e.g., College Auditorium)" required>
-                <div style="display: flex; gap: 10px;">
-                    <input type="number" placeholder="Capacity (e.g., 200)" value="200" style="flex: 1;">
-                    <input type="number" step="0.01" placeholder="Price (e.g., 50.00 or 0.00 for Free)" value="0.00" style="flex: 1;">
-                </div>
-                <button type="submit">Publish Event</button>
-            </form>
-            <p style="text-align: center; color: var(--secondary-color); font-size: 0.8em;">*Note: In this static demo, this form doesn't save data.*</p>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
-
-        <h2 id="events" class="section-heading">📅 Upcoming College Events</h2>
-         
-        <div class="event-grid">
-             
-            <div class="event-card">
-                <div class="event-card-body">
-                    <h3>Annual Cultural Fest 🎤</h3>
-                    <p class="meta">📍 Main Quad | 🗓️ 15th Dec 2025 | 🕒 6:00 PM</p>
-                    <p>The biggest event of the year! Enjoy music, dance, and drama performances. Limited VIP tickets available.</p>
-                    <p style="font-weight: bold; color: var(--primary-color);">Price: Rs. 250.00 (General Admission)</p>
-                    <button onclick="alert('Simulated registration. You would need to be logged in to register in a dynamic system.'); return false;" class="register-btn">Book Ticket Now</button>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <div class="event-card-body">
-                    <h3>Code-a-thon 2025 💻</h3>
-                    <p class="meta">📍 Computer Lab 301 | 🗓️ 22nd Nov 2025 | 🕒 9:00 AM</p>
-                    <p>A 12-hour coding challenge. Compete for prizes and sharpen your skills. Free entry for all college students.</p>
-                    <p style="font-weight: bold; color: var(--success-color);">Price: FREE</p>
-                    <button onclick="alert('Simulated registration. Registration Confirmed locally!'); return false;" class="register-btn free">Register for Free</button>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <div class="event-card-body">
-                    <h3>Career Guidance Seminar 📈</h3>
-                    <p class="meta">📍 Seminar Hall | 🗓️ 5th Jan 2026 | 🕒 2:00 PM</p>
-                    <p>Session with industry experts on resume building and interview preparation for final-year students.</p>
-                    <p style="font-weight: bold; color: var(--primary-color);">Price: Rs. 50.00 (Mandatory)</p>
-                    <button onclick="alert('Simulated registration. Requires payment in a dynamic site.'); return false;" class="register-btn">Register Now</button>
-                </div>
-            </div>
-
-        </div>
+    <div id="login" class="tab-content active">
+        <form>
+            <input type="email" placeholder="anjalikadam82@gmail.com" required>
+            <input type="password" placeholder="••••••••••" required>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
     </div>
+
+    <div id="signup" class="tab-content">
+        <form>
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Create Password" required>
+            
+            <select required>
+                <option value="" disabled selected>Select Role (Student/Staff)</option>
+                <option value="student">Student</option>
+                <option value="staff">Staff / Faculty</option>
+            </select>
+            
+            <select required>
+                <option value="" disabled selected>Select Department</option>
+                <option value="computer">Computer Engineering</option>
+                <option value="it">Information Technology</option>
+                <option value="etc">E&TC</option>
+                <option value="aids">AIDS</option>
+            </select>
+            
+            <input type="text" placeholder="Full Name" required>
+            <input type="text" placeholder="Student ID (PRN)" required>
+            
+            <button type="submit" class="btn-success">Create Account</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // --- Basic JavaScript for Tab Switching ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.tab-button');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to the clicked tab and its content
+                tab.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
